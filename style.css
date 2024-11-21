@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0f7fa, #c8e6c9);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #4CAF50;
+    color: white;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+}
+
+main {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Game Board Styling */
+#gameBoard {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 80px);
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#gameBoard button {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff7043;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#gameBoard button.is-off {
+    background-color: #81c784;
+}
+
+#gameBoard button:hover {
+    transform: scale(1.1);
+}
+
+/* Buttons */
+.styled-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.styled-btn:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+/* Addendum Modal */
+#addendum {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.addendum-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.addendum-content h2 {
+    margin-top: 0;
+}
+
+/* Hidden Class for Modal */
+.hidden {
+    display: none;
+}
+
+/* Click Counter */
+#clickCounter {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+}

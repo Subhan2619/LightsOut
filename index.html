@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lights Out Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -22,14 +22,21 @@
         <div class="addendum-content">
             <h2>Addendum</h2>
             <p>
-                This game is designed to replicate the classic *Lights Out* puzzle. 
-                Key features include:
-                <ul>
-                    <li>Randomly generated, solvable starting configurations.</li>
-                    <li>Interactive design with visual feedback for toggles.</li>
-                    <li>Click counter to track user interactions.</li>
-                    <li>Enhanced UI/UX for better gameplay experience.</li>
-                </ul>
+                This game is designed to replicate the classic *Lights Out* puzzle, with an interactive twist. The key features of the game include:
+            </p>
+            <ul>
+                <li><strong>Random Starting Configuration:</strong> The puzzle board is generated with a random, solvable configuration each time the game starts, ensuring that every game is a new challenge.</li>
+                <li><strong>Interactive Design:</strong> Each tile on the board is clickable, and clicking a tile toggles it between on and off. The state of neighboring tiles is also toggled, which adds a layer of strategy to the game.</li>
+                <li><strong>Click Counter:</strong> Keep track of your progress! The number of clicks you take to win the game is displayed in the corner of the screen.</li>
+                <li><strong>Win Condition:</strong> The objective is to turn off all the lights on the board. Once all lights are off, a "You win!" message is displayed.</li>
+                <li><strong>User Experience Enhancements:</strong> The game uses smooth animations, intuitive controls, and visually appealing colors to make the experience enjoyable.</li>
+            </ul>
+            <h3>Design Choices:</h3>
+            <p>
+                The game features a 5x5 grid of tiles, each of which can be toggled between two states: <strong>on</strong> (represented by a red light) and <strong>off</strong> (represented by a green light). The puzzle is designed to be solvable within a reasonable number of moves.
+            </p>
+            <p>
+                The board is randomized each time you play, but it is always solvable, so you can always complete the puzzle. The game is designed for short sessions, so it's ideal for casual gameplay.
             </p>
             <button id="closeAddendum" class="styled-btn">Close</button>
         </div>

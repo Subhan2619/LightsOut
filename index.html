@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        <div class="grid" id="grid"></div>
+    <div class="container">
+        <h1>Lights Out Game</h1>
+        <div class="game-container">
+            <div class="grid" id="grid"></div>
+        </div>
         <div class="info">
             <p>Total Clicks: <span id="clicksCounter">0</span></p>
-            <button id="addendumButton">Show Addendum</button>
-            <div id="addendumContent" style="display:none;">
+            <button id="addendumButton" class="btn">Show Addendum</button>
+            <div id="addendumContent" class="addendum" style="display:none;">
                 <h3>Game Development Addendum</h3>
                 <p><strong>Game Logic:</strong> The game uses a 5x5 grid where each square can be toggled on and off. Clicking on a square toggles its state and the state of adjacent squares. The game ends when all squares are off.</p>
                 <p><strong>CSS Styling:</strong> The game grid is created using CSS grid layout. Squares are styled with basic colors, and the "off" state is represented by black, while the "on" state is white.</p>
                 <p><strong>JavaScript Usage:</strong> The game logic is written in JavaScript, where we use a 2D array to track the state of the grid. We also handle user interactions, random solvable grid setup, and win detection with JavaScript.</p>
                 <p><strong>Challenges Faced:</strong> The main challenge was generating a random solvable configuration. To solve this, I started with an all-white board and toggled random squares to ensure that the final configuration was solvable.</p>
-            </div> 
+            </div>
         </div>
     </div>
 

@@ -1,73 +1,85 @@
-const boardSize = 5;
-const gameBoard = document.getElementById('gameBoard');
-const addendumBtn = document.getElementById('addendumBtn');
-const addendum = document.getElementById('addendum');
-const closeAddendum = document.getElementById('closeAddendum');
-const clickCounterDisplay = document.getElementById('clickCounter');
+const gridSize = 5; // 5x5 grid
+const gridContainer = document.getElementById('grid');
+let board = [];
+let totalClicks = 0; // Track total number of clicks
 
-let totalClicks = 0;
+// Function to create the game grid
+function createGrid() {
+    gridContainer.innerHTML = ''; // Clear any previous grid
+    board = [];
 
-// Create the game board
-function createBoard() {
-    for (let i = 0; i < boardSize * boardSize; i++) {
-        const button = document.createElement('button');
-        button.addEventListener('click', () => toggleLights(i));
-        gameBoard.appendChild(button);
-    }
-}
+    // Create the squares and add to the grid
+    for (let row = 0; row < gridSize; row++) {
+        const rowArray = [];
+        for (let col = 0; col < gridSize; col++) {
+            const square = document.createElement('div');
+            square.classList.add('square');
+            square.addEventListener('click', () => toggleSquare(row, col));
 
-// Update click counter
-function updateClickCounter() {
-    totalClicks++;
-    clickCounterDisplay.textContent = `Total Clicks: ${totalClicks}`;
-}
-
-// Toggle lights
-function toggleLights(index) {
-    const buttons = Array.from(gameBoard.children);
-    const neighbors = [index, index - 1, index + 1, index - boardSize, index + boardSize];
-
-    neighbors.forEach(i => {
-        if (i >= 0 && i < buttons.length) {
-            const sameRow = Math.floor(i / boardSize) === Math.floor(index / boardSize);
-            const verticalToggle = i % boardSize === index % boardSize;
-
-            if (sameRow || verticalToggle) {
-                buttons[i].classList.toggle('is-off');
-            }
+            rowArray.push(false); // False means the square is "off" initially
+            gridContainer.appendChild(square);
         }
-    });
-
-    updateClickCounter();
-
-    if (checkWin()) {
-        setTimeout(() => alert(`You win! Total Clicks: ${totalClicks}`), 100);
+        board.push(rowArray);
     }
 }
 
-// Randomize the board
-function randomizeBoard() {
-    const buttons = Array.from(gameBoard.children);
-    for (let i = 0; i < buttons.length; i++) {
-        if (Math.random() > 0.5) toggleLights(i);
+// Function to toggle the state of a square and its neighbors
+function toggleSquare(row, col) {
+    // Toggle the clicked square
+    toggle(row, col);
+
+    // Toggle neighboring squares
+    if (row > 0) toggle(row - 1, col); // Top
+    if (row < gridSize - 1) toggle(row + 1, col); // Bottom
+    if (col > 0) toggle(row, col - 1); // Left
+    if (col < gridSize - 1) toggle(row, col + 1); // Right
+
+    // Increment the total clicks counter
+    totalClicks++;
+    document.getElementById('clicksCounter').textContent = totalClicks;
+
+    // Check if the game is solved
+    if (isSolved()) {
+        setTimeout(() => {
+            alert("You win!");
+        }, 200);
     }
 }
 
-// Check win condition
-function checkWin() {
-    return Array.from(gameBoard.children).every(btn => btn.classList.contains('is-off'));
+// Function to toggle a specific square
+function toggle(row, col) {
+    board[row][col] = !board[row][col]; // Toggle the state
+    const index = row * gridSize + col;
+    const square = gridContainer.children[index];
+    square.classList.toggle('is-off', board[row][col]); // Update UI
 }
 
-// Addendum functionality
-addendumBtn.addEventListener('click', () => {
-    addendum.classList.remove('hidden'); // Show addendum
+// Function to check if the game is solved
+function isSolved() {
+    return board.every(row => row.every(state => !state)); // All squares must be "off"
+}
+
+// Initialize the game with a random solvable configuration
+function initGame() {
+    createGrid();
+    randomSolveableStart();
+}
+
+// Function to generate a random solvable starting configuration
+function randomSolveableStart() {
+    const randomClicks = Math.floor(Math.random() * 20) + 10; // Number of random clicks
+    for (let i = 0; i < randomClicks; i++) {
+        const row = Math.floor(Math.random() * gridSize);
+        const col = Math.floor(Math.random() * gridSize);
+        toggleSquare(row, col);
+    }
+}
+
+// Show or hide the addendum content
+document.getElementById('addendumButton').addEventListener('click', function() {
+    const content = document.getElementById('addendumContent');
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
 });
 
-closeAddendum.addEventListener('click', () => {
-    addendum.classList.add('hidden'); // Hide addendum
-});
-
-// Initialize
-document.getElementById('lastModified').textContent = document.lastModified;
-createBoard();
-randomizeBoard();
+// Start the game
+initGame();

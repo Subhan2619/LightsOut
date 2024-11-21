@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights Out Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Lights Out</h1>
+        <p>Toggle all the lights off to win!</p>
+    </header>
+
+    <main>
+        <div id="gameBoard"></div>
+        <p id="clickCounter">Total Clicks: 0</p>
+        <button id="addendumBtn" class="styled-btn">View Addendum</button>
+    </main>
+
+    <div id="addendum" class="hidden">
+        <div class="addendum-content">
+            <h2>Addendum</h2>
+            <p>
+                This game is designed to replicate the classic *Lights Out* puzzle. 
+                Key features include:
+                <ul>
+                    <li>Randomly generated, solvable starting configurations.</li>
+                    <li>Interactive design with visual feedback for toggles.</li>
+                    <li>Click counter to track user interactions.</li>
+                    <li>Enhanced UI/UX for better gameplay experience.</li>
+                </ul>
+            </p>
+            <button id="closeAddendum" class="styled-btn">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Last updated: <span id="lastModified"></span></p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

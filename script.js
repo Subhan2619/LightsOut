@@ -2,6 +2,7 @@ const gridSize = 5; // 5x5 grid
 const gridContainer = document.getElementById('grid');
 let board = [];
 let totalClicks = 0; // Track total number of clicks
+let isGameWon = false; // Flag to check if the game is won
 
 // Function to create the game grid
 function createGrid() {
@@ -14,7 +15,12 @@ function createGrid() {
         for (let col = 0; col < gridSize; col++) {
             const square = document.createElement('div');
             square.classList.add('square');
-            square.addEventListener('click', () => toggleSquare(row, col));
+            square.addEventListener('click', () => {
+                if (!isGameWon) {
+                    toggleSquare(row, col);
+                    updateClicks();
+                }
+            });
 
             rowArray.push(false); // False means the square is "off" initially
             gridContainer.appendChild(square);
@@ -34,12 +40,9 @@ function toggleSquare(row, col) {
     if (col > 0) toggle(row, col - 1); // Left
     if (col < gridSize - 1) toggle(row, col + 1); // Right
 
-    // Increment the total clicks counter
-    totalClicks++;
-    document.getElementById('clicksCounter').textContent = totalClicks;
-
     // Check if the game is solved
     if (isSolved()) {
+        isGameWon = true;
         setTimeout(() => {
             alert("You win!");
         }, 200);
@@ -57,6 +60,12 @@ function toggle(row, col) {
 // Function to check if the game is solved
 function isSolved() {
     return board.every(row => row.every(state => !state)); // All squares must be "off"
+}
+
+// Update total clicks counter
+function updateClicks() {
+    totalClicks++;
+    document.getElementById('clicksCounter').textContent = totalClicks;
 }
 
 // Initialize the game with a random solvable configuration

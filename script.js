@@ -60,11 +60,11 @@ function checkWin() {
 
 // Addendum functionality
 addendumBtn.addEventListener('click', () => {
-    addendum.classList.remove('hidden');
+    addendum.classList.remove('hidden'); // Show addendum
 });
 
 closeAddendum.addEventListener('click', () => {
-    addendum.classList.add('hidden');
+    addendum.classList.add('hidden'); // Hide addendum
 });
 
 // Initialize

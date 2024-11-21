@@ -4,48 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lights Out Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Lights Out</h1>
-        <p>Toggle all the lights off to win!</p>
-    </header>
-
-    <main>
-        <div id="gameBoard"></div>
-        <p id="clickCounter">Total Clicks: 0</p>
-        <button id="addendumBtn" class="styled-btn">View Addendum</button>
-    </main>
-
-    <div id="addendum" class="hidden">
-        <div class="addendum-content">
-            <h2>Addendum</h2>
-            <p>
-                This game is designed to replicate the classic *Lights Out* puzzle, with an interactive twist. The key features of the game include:
-            </p>
-            <ul>
-                <li><strong>Random Starting Configuration:</strong> The puzzle board is generated with a random, solvable configuration each time the game starts, ensuring that every game is a new challenge.</li>
-                <li><strong>Interactive Design:</strong> Each tile on the board is clickable, and clicking a tile toggles it between on and off. The state of neighboring tiles is also toggled, which adds a layer of strategy to the game.</li>
-                <li><strong>Click Counter:</strong> Keep track of your progress! The number of clicks you take to win the game is displayed in the corner of the screen.</li>
-                <li><strong>Win Condition:</strong> The objective is to turn off all the lights on the board. Once all lights are off, a "You win!" message is displayed.</li>
-                <li><strong>User Experience Enhancements:</strong> The game uses smooth animations, intuitive controls, and visually appealing colors to make the experience enjoyable.</li>
-            </ul>
-            <h3>Design Choices:</h3>
-            <p>
-                The game features a 5x5 grid of tiles, each of which can be toggled between two states: <strong>on</strong> (represented by a red light) and <strong>off</strong> (represented by a green light). The puzzle is designed to be solvable within a reasonable number of moves.
-            </p>
-            <p>
-                The board is randomized each time you play, but it is always solvable, so you can always complete the puzzle. The game is designed for short sessions, so it's ideal for casual gameplay.
-            </p>
-            <button id="closeAddendum" class="styled-btn">Close</button>
+    <div class="game-container">
+        <div class="grid" id="grid"></div>
+        <div class="info">
+            <p>Total Clicks: <span id="clicksCounter">0</span></p>
+            <button id="addendumButton">Show Addendum</button>
+            <div id="addendumContent" style="display:none;">
+                <h3>Game Development Addendum</h3>
+                <p><strong>Game Logic:</strong> The game uses a 5x5 grid where each square can be toggled on and off. Clicking on a square toggles its state and the state of adjacent squares. The game ends when all squares are off.</p>
+                <p><strong>CSS Styling:</strong> The game grid is created using CSS grid layout. Squares are styled with basic colors, and the "off" state is represented by black, while the "on" state is white.</p>
+                <p><strong>JavaScript Usage:</strong> The game logic is written in JavaScript, where we use a 2D array to track the state of the grid. We also handle user interactions, random solvable grid setup, and win detection with JavaScript.</p>
+                <p><strong>Challenges Faced:</strong> The main challenge was generating a random solvable configuration. To solve this, I started with an all-white board and toggled random squares to ensure that the final configuration was solvable.</p>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>Last updated: <span id="lastModified"></span></p>
     </footer>
-    
+
+    <script type="text/javascript">
+        var x = document.lastModified;
+        document.getElementById('lastModified').textContent = x;
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
